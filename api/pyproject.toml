@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pdfform"
+version = "0.1.0"
+description = ""
+authors = ["herveGuigoz <herve.guigoz@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pypdfform = "^1.4.35"
+fastapi = {extras = ["standard"], version = "^0.115.0"}
+pydantic-settings = "^2.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+schema = 'pdfform.main:schema'
+preview = 'pdfform.main:preview'
+fill = 'pdfform.main:fill'

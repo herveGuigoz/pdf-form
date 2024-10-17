@@ -1,0 +1,11 @@
+{
+	{$CADDY_GLOBAL_OPTIONS}
+}
+
+{$CADDY_EXTRA_CONFIG} 
+
+{$SERVER_NAME:localhost} {
+    encode zstd gzip
+    
+	reverse_proxy http://{$API_UPSTREAM}
+}
