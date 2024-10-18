@@ -49,6 +49,17 @@ def schema(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error getting PDF schema: {str(e)}")
 
+@router.post("/preview", response_class=FileResponse, tags=["Preview"])
+def preview(
+    file: Pdf = Depends(pdf)
+):
+    try:
+        preview = file.preview()
+        return Response(content=preview, media_type="application/pdf", headers={"Content-Disposition": f"attachment; filename=preview.pdf"})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error getting PDF preview: {str(e)}")
+
+
 @router.post("/fill", response_class=FileResponse, tags=["Fill"])
 async def fill(
     file: Annotated[UploadFile, File()],

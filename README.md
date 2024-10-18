@@ -9,7 +9,7 @@ This is a simple project to fill PDF forms using FastAPI and pypdfform.
 Open your terminal and write the command given below, this will give you a secret key which we will for authentication.
 
 ```sh
-echo "JWT_SECRET=$(openssl rand -hex 32)" >> .env
+echo "APP_SECRET=$(openssl rand -hex 32)" >> .env
 ```
 
 2. Run docker containers
@@ -34,5 +34,5 @@ poetry env list
 ## Production
 
 ```sh
-docker compose -f compose.yaml up -d --wait
+docker compose -f compose.yaml -f compose.prod.yaml up -d --wait
 ```

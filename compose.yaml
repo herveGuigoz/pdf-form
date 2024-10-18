@@ -1,37 +1,8 @@
 services:
-  api:
-    build: 
-      context: ./api
-      target: production
+  pdf-form:
+    image: ${IMAGES_PREFIX:-}pdf-form
+    restart: unless-stopped
     environment:
-      APP_SECRET: ${APP_SECRET}
+      APP_SECRET: ${APP_SECRET:-a2e2794c5b94d6c8a6f8a8428c785736}
       USERNAME: ${USERNAME:-admin}
       PASSWORD: ${PASSWORD:-ChangeMe}
-
-  caddy:
-    image: caddy:latest
-    volumes:
-      - ./docker/Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
-    ports:
-      # HTTP
-      - target: 80
-        published: ${HTTP_PORT:-80}
-        protocol: tcp
-      # HTTPS
-      - target: 443
-        published: ${HTTPS_PORT:-443}
-        protocol: tcp
-      # HTTP/3
-      - target: 443
-        published: ${HTTP3_PORT:-443}
-        protocol: udp
-    environment:
-      API_UPSTREAM: api:80
-      SERVER_NAME: ${SERVER_NAME:-localhost}, :80
-
-
-volumes:
-  caddy_data:
-  caddy_config:

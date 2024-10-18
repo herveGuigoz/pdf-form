@@ -1,0 +1,23 @@
+services:
+  pdf-form:
+    build: 
+      context: ./api
+      target: production
+    container_name: pdf-form
+    restart: unless-stopped
+    networks:
+      - lan
+    environment:
+      APP_SECRET: ${APP_SECRET}
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}
+    labels:
+      traefik.enable: true
+      traefik.http.services.pdf-form.loadbalancer.server.port: 80
+      traefik.http.routers.pdf-form.rule: Host(`${SERVER_NAME}`)
+      traefik.http.routers.pdf-form.entrypoints: https
+      traefik.http.routers.pdf-form.service: pdf-form
+
+networks:
+  lan:
+    external: true

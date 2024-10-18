@@ -22,6 +22,10 @@ app = FastAPI(
             "description": "Retrieve the schema of the PDF form",
         },
         {
+            "name": "Preview",
+            "description": "Get a preview of the PDF form",
+        },
+        {
             "name": "Fill",
             "description": "Fill the PDF form with the given data (key:value,other:value).",
         },
