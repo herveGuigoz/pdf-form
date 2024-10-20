@@ -1,15 +1,16 @@
 # PDF Form Filler
 
-This is a simple project to fill PDF forms using FastAPI and pypdfform.
+This is a simple project to fill PDF forms using [FastAPI](https://fastapi.tiangolo.com/) and [pypdfform](https://github.com/chinapandaman/PyPDFForm).
 
 ## Installation
 
-1. Generate JWT key
+1. Generate Credentials
 
-Open your terminal and write the command given below, this will give you a secret key which we will for authentication.
+Create a `.env` file with the following content:
 
-```sh
-echo "APP_SECRET=$(openssl rand -hex 32)" >> .env
+```env
+USERNAME=your_username
+PASSWORD=your_password
 ```
 
 2. Run docker containers
@@ -19,9 +20,15 @@ docker compose build --pull --no-cache
 docker compose up --detach
 ```
 
-## Commands
+## Production
 
-#### Poetry commands
+```sh
+docker compose -f compose.yaml -f compose.prod.yaml up -d --wait
+```
+
+## Poetry
+
+### commands
 
 ```sh
 poetry env info --path
@@ -29,10 +36,4 @@ poetry env info --path
 
 ```sh
 poetry env list
-```
-
-## Production
-
-```sh
-docker compose -f compose.yaml -f compose.prod.yaml up -d --wait
 ```

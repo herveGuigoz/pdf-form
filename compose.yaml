@@ -3,6 +3,5 @@ services:
     image: ${IMAGES_PREFIX:-}pdf-form
     restart: unless-stopped
     environment:
-      APP_SECRET: ${APP_SECRET:-a2e2794c5b94d6c8a6f8a8428c785736}
       USERNAME: ${USERNAME:-admin}
       PASSWORD: ${PASSWORD:-ChangeMe}
